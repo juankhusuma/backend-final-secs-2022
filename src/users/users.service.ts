@@ -16,7 +16,7 @@ export class UsersService {
     }
 
     public async create(dto: Prisma.UserCreateInput) {
-        const user = this.db.user.findUnique({ where: { username: dto.username } });
+        const user = await this.db.user.findUnique({ where: { username: dto.username } });
         if (user) throw new BadRequestException("Username ini telah digunakan")
         const {password, ...data} = dto;
         const _password = await hash(password, 10);

@@ -1,6 +1,7 @@
-import { Body, Controller, Post, Res } from '@nestjs/common';
+import { Body, Controller, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { Prisma } from '@prisma/client';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { LoginDTO } from 'src/dto/auth.dto';
 import { UsersService } from 'src/users/users.service';
 import { AuthService } from './auth.service';
@@ -27,6 +28,17 @@ export class AuthController {
     @Post('register')
     public async register(@Body() dto: Prisma.UserCreateInput) {
         return this.user.create(dto)
+    }
+
+    @UseGuards(AuthGuard("jwt"))
+    @Post('logout')
+    public async logout(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
+        res.cookie("jwt_token", req.cookies["jwt_token"], {
+            expires: new Date(Date.now())
+        })
+        return {
+            ...req.cookies
+        }
     }
 
 }
