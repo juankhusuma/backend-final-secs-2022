@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  DOSEN
+  MAHASISWA
+}
+
+enum Day {
+  Senin
+  Selasa
+  Rabu
+  Kamis
+  Jumat
+  Sabtu
+  Minggu
+}
+
+model User {
+  id              Int               @id @default(autoincrement())
+  username        String            @unique @db.VarChar(255)
+  password        String            @db.VarChar(255)
+  name            String            @db.VarChar(255)
+  Role            Role
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  User_MataKuliah User_MataKuliah[]
+}
+
+model MataKuliah {
+  id              Int               @id @default(autoincrement())
+  code            String            @unique @db.VarChar(50)
+  name            String            @db.VarChar(255)
+  room            Int
+  class           String            @db.VarChar(50)
+  prodi           String            @db.VarChar(255)
+  User_MataKuliah User_MataKuliah[]
+}
+
+model User_MataKuliah {
+  userId       Int
+  User         User       @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  mataKuliahId Int
+  MataKuliah   MataKuliah @relation(fields: [mataKuliahId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  schedule Day[]
+  start    Int
+  end      Int
+  semester Int
+
+  @@id([userId, mataKuliahId])
+}
