@@ -7,7 +7,10 @@ async function bootstrap() {
   app.use(cp())
   app.enableCors({
     credentials: true,
-    origin: ["http://localhost:3000"]
+    origin: [
+      "http://localhost:3000",
+      "https://secs2022.ulya.my.id"
+    ]
   })
   await app.listen(process.env.PORT || 4200);
 }
