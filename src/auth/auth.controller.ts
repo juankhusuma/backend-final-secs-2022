@@ -34,7 +34,9 @@ export class AuthController {
     @Post('logout')
     public async logout(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
         res.cookie("jwt_token", req.cookies["jwt_token"], {
-            expires: new Date(Date.now())
+            expires: new Date(Date.now()),
+            sameSite: "none",
+            secure: true
         })
         return {
             ...req.cookies
