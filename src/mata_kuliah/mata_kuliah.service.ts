@@ -9,7 +9,11 @@ export class MataKuliahService {
     all() {
         return this.db.mataKuliah.findMany({
             include: {
-                User_MataKuliah: true
+                User_MataKuliah: {
+                    include: {
+                        User: true
+                    }
+                },
             }
         })
     }
