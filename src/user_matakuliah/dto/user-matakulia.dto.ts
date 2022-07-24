@@ -1,15 +1,31 @@
 import { Type } from "class-transformer";
-import { IsInt, IsNotEmpty } from "class-validator";
+import { IsNotEmpty } from "class-validator";
 
 
-export class CreateUserMataKuliahDto {
-    userId: number;
-
+export class CreateUserMataKuliahDto {    
+    @IsNotEmpty()
+    @Type(() => Number)
     mataKuliahId: number;
 
-    start: number;
+    @IsNotEmpty()
+    schedule: any;
 
-    end: number;
+    @IsNotEmpty()
+    start: string;
+
+    @IsNotEmpty()
+    end: string;
+
+    @IsNotEmpty()
+    semester: number;
+}
+
+export class UpdateUserMataKuliahDto {
+    schedule: any;
+
+    start: string;
+
+    end: string;
 
     semester: number;
 }

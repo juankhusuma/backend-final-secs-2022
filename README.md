@@ -95,16 +95,25 @@ Tabel Mata Kuliah
 
           #Delete -> menghapus matakuliah
 
-
 Tabel User Matakuliah
   @Route: /user-matakuliah
           #Get  -> mengembalikan data user login dan mata   kuliah yang terkoneksi
 
           #Post -> mengambil mata kuliah sesuai user login
-                     -> Inputan:  userId, 
-                                  mataKuliahId, 
+                     -> Inputan:  mataKuliahId,
+                                  schedule (Senin, Selasa, Rabu, Kamis, Jumat, Sabtu, Minggu),
                                   start,
                                   end,
                                   semester
+
+          #Patch -> mengupdate mata kuliah sesuai user login dan id matakuliah
+                     -> Tambahan route:  /id,
+                     -> Inputan:
+                                  schedule (Senin, Selasa, Rabu, Kamis, Jumat, Sabtu, Minggu),
+                                  start,
+                                  end,
+                                  semester
+
+          #Delete -> menghapus matakuliah yang diambil user
                                   
 

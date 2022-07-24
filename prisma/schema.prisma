@@ -51,10 +51,10 @@ model User_MataKuliah {
   User         User       @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   mataKuliahId Int
   MataKuliah   MataKuliah @relation(fields: [mataKuliahId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-
+ 
   schedule Day[]
-  start    Int
-  end      Int
+  start    String
+  end      String
   semester Int
 
   @@id([userId, mataKuliahId])

@@ -1,5 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { CreateUserMataKuliahDto, UpdateUserMataKuliahDto } from './dto/user-matakulia.dto';
 
 @Injectable()
 export class UserMatakuliahService {
@@ -7,7 +8,7 @@ export class UserMatakuliahService {
 
     userMatkul(req: any) {
         return this.db.user.findFirst({
-            where: { id: req.id },
+            where: { id: req.user.id },
             select: {
                 username: true,
                 name: true,
@@ -27,12 +28,22 @@ export class UserMatakuliahService {
         })
     }
 
-    async create(body: any, payload: any) {
+    async create(req: any, body: CreateUserMataKuliahDto) {
+        const uniqueConstrait = await this.db.user_MataKuliah.findUnique({
+            where: {
+                userId_mataKuliahId: {
+                    userId: req.user.id,
+                    mataKuliahId: +body.mataKuliahId,
+                }
+            }
+        })
+        if(uniqueConstrait) throw new BadRequestException('Relasi sudah ada')
+        
         return await this.db.user_MataKuliah.create({
             data: {
                 User: {
                     connect: {
-                        id: +body.userId,
+                        id: req.user.id,
                     },
                 },
                 MataKuliah: {
@@ -40,10 +51,64 @@ export class UserMatakuliahService {
                         id: +body.mataKuliahId
                     }
                 },
-                start: payload.start,
-                end: payload.end,
-                semester: payload.semester
+                schedule: body.schedule,
+                start: body.start,
+                end: body.end,
+                semester: +body.semester
             }
         })
+    }
+
+    async update(req: any, param: number, body: UpdateUserMataKuliahDto) {
+        const userMatkul = await this.db.user_MataKuliah.findUnique({
+            where: {
+                userId_mataKuliahId: {
+                    userId: req.user.id,
+                    mataKuliahId: +param
+                }
+            }
+        })
+        if(!userMatkul) throw new NotFoundException("Not Found");
+
+        return await this.db.user_MataKuliah.update({
+            where: {
+                userId_mataKuliahId: {
+                    userId: req.user.id,
+                    mataKuliahId: +param,
+                }
+            },
+            data: {                
+                schedule: body.schedule,
+                start: body.start,
+                end: body.end,
+                semester: +body.semester
+            }
+        })
+    }
+
+    async delete(req: any, id: number) {
+        const userMatkul = await this.db.user_MataKuliah.findUnique({
+            where: {
+                userId_mataKuliahId: {
+                    userId: req.user.id,
+                    mataKuliahId: +id
+                }
+            }
+        })
+        if(!userMatkul) throw new NotFoundException("Not Found");
+        
+        await this.db.user_MataKuliah.delete({
+            where: {
+                userId_mataKuliahId: {
+                    userId: req.user.id,
+                    mataKuliahId: +id
+                }
+            }
+        })
+
+        return {
+            "statusCode": 200,
+            "message": "Berhasil menghapus matakuliah dari user yang login"
+        }
     }
 }
