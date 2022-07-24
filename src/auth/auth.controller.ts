@@ -18,7 +18,9 @@ export class AuthController {
         const token = await this.auth.login(dto)
         res.cookie('jwt_token', token, {
             httpOnly: true,
-            maxAge: 7 * 24 * 60 * 60 * 1000
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+            sameSite: "none",
+            secure: true
         })
         return {
             "Success": true
