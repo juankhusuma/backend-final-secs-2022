@@ -8,8 +8,21 @@ export class MataKuliahService {
 
     all() {
         return this.db.mataKuliah.findMany({
-            include: {
-                User_MataKuliah: true
+            select: {
+                id: true,
+                code: true,
+                name: true,
+                room: true,
+                class: true,
+                prodi: true,
+                User_MataKuliah: {
+                    select: {
+                        schedule: true,
+                        start: true,
+                        end: true,
+                        semester: true
+                    }
+                },
             }
         })
     }
@@ -54,7 +67,6 @@ export class MataKuliahService {
                     prodi: dataInput.prodi
                 }
             })
-
         }
     }
 
