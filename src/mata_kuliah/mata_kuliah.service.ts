@@ -20,7 +20,8 @@ export class MataKuliahService {
                         schedule: true,
                         start: true,
                         end: true,
-                        semester: true
+                        semester: true,
+                        User: true
                     }
                 },
             }
@@ -33,7 +34,7 @@ export class MataKuliahService {
         const data = {
             code: dataInput.code,
             name: dataInput.name,
-            room: Number(dataInput.room),
+            room: dataInput.room,
             class: dataInput.class,
             prodi: dataInput.prodi
         }
@@ -52,7 +53,7 @@ export class MataKuliahService {
                 data: {
                     code: dataInput.code,
                     name: dataInput.name,
-                    room: Number(dataInput.room),
+                    room: dataInput.room,
                     class: dataInput.class,
                     prodi: dataInput.prodi
                 }
@@ -62,7 +63,7 @@ export class MataKuliahService {
                 where: { id: +id },
                 data: {
                     name: dataInput.name,
-                    room: Number(dataInput.room),
+                    room: dataInput.room,
                     class: dataInput.class,
                     prodi: dataInput.prodi
                 }

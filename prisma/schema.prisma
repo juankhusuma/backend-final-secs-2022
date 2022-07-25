@@ -40,7 +40,7 @@ model MataKuliah {
   id              Int               @id @default(autoincrement())
   code            String            @unique @db.VarChar(50)
   name            String            @db.VarChar(255)
-  room            Int
+  room            String            @db.VarChar(255)
   class           String            @db.VarChar(50)
   prodi           String            @db.VarChar(255)
   User_MataKuliah User_MataKuliah[]
@@ -50,12 +50,12 @@ model User_MataKuliah {
   userId       Int
   User         User       @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   mataKuliahId Int
-  MataKuliah   MataKuliah @relation(fields: [mataKuliahId], references: [id], onDelete: Cascade, onUpdate: Cascade)
- 
-  schedule Day[]
-  start    String
-  end      String
-  semester Int
+  MataKuliah   MataKuliah @relation(fields: [mataKuliahId], references: [id], onDelete: Cascade)
+
+  schedule     Day[]
+  start        String
+  end          String
+  semester     Int
 
   @@id([userId, mataKuliahId])
 }

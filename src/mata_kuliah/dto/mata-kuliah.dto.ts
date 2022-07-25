@@ -10,9 +10,7 @@ export class CreateMataKuliahDto {
     name: string;
     
     @IsNotEmpty()
-    @IsInt()
-    @Type(() => Number)
-    room: number;
+    room: string;
     
     @IsNotEmpty()
     class: string;
@@ -28,9 +26,7 @@ export class UpdateMataKuliahDto {
     name: string;
     
     @IsNotEmpty()
-    @IsInt()
-    @Type(() => Number)
-    room: number;
+    room: string;
     
     @IsNotEmpty()
     class: string;

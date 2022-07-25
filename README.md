@@ -74,7 +74,7 @@ Nest is [MIT licensed](LICENSE).
 
 ## Dokumentasi
 
-Tabel Mata Kuliah
+  Tabel Mata Kuliah
   @Route: /mata-kuliah
           #Get  -> mengembalikan daftar matakuliah
 
@@ -95,7 +95,7 @@ Tabel Mata Kuliah
 
           #Delete -> menghapus matakuliah
 
-Tabel User Matakuliah
+  Tabel User Matakuliah
   @Route: /user-matakuliah
           #Get  -> mengembalikan data user login dan mata   kuliah yang terkoneksi
 

@@ -9,7 +9,7 @@ export class AppController {
 
   @UseGuards(AuthGuard("jwt"))
   @Get()
-  getHello(@Req() req: Request) {
-    return req.user;
+  get(@Req() req: Request) {
+    return this.appService.get(req)
   }
 }
