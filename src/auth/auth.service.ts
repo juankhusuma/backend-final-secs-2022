@@ -13,7 +13,7 @@ export class AuthService {
     public async login(dto: LoginDTO) {
         const _user = await this.user.validate(dto.username, dto.password)
         if (!_user) throw new UnauthorizedException("Autentikasi Gagal");
-        return this.sign(_user.id, _user.username, _user.Role)
+        return this.sign(_user.id, _user.name, _user.username, _user.Role)
     }
 
     public async sign(id: number, username: string, Role: string) {
