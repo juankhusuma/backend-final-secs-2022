@@ -20,7 +20,8 @@ export class MataKuliahService {
                         schedule: true,
                         start: true,
                         end: true,
-                        semester: true
+                        semester: true,
+                        User: true
                     }
                 },
             }
