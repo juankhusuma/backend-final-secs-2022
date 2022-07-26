@@ -71,3 +71,49 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## Dokumentasi
+
+  Tabel Mata Kuliah
+  @Route: /mata-kuliah
+          #Get  -> mengembalikan daftar matakuliah
+
+          #Post -> membuat matakuliah baru 
+                     -> Inputan:  code(unik), 
+                                  name, 
+                                  room(int),
+                                  class,
+                                  prodi
+
+          #Patch -> mengupdate matakuliah
+                     -> tambahan route:  /id,
+                     -> Inputan:  code(unik), 
+                                  name, 
+                                  room(int),
+                                  class,
+                                  prodi
+
+          #Delete -> menghapus matakuliah
+
+  Tabel User Matakuliah
+  @Route: /user-matakuliah
+          #Get  -> mengembalikan data user login dan mata   kuliah yang terkoneksi
+
+          #Post -> mengambil mata kuliah sesuai user login
+                     -> Inputan:  mataKuliahId,
+                                  schedule (Senin, Selasa, Rabu, Kamis, Jumat, Sabtu, Minggu),
+                                  start,
+                                  end,
+                                  semester
+
+          #Patch -> mengupdate mata kuliah sesuai user login dan id matakuliah
+                     -> Tambahan route:  /id,
+                     -> Inputan:
+                                  schedule (Senin, Selasa, Rabu, Kamis, Jumat, Sabtu, Minggu),
+                                  start,
+                                  end,
+                                  semester
+
+          #Delete -> menghapus matakuliah yang diambil user
+                                  
+
