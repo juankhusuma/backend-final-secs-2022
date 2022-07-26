@@ -16,9 +16,10 @@ export class AuthService {
         return this.sign(_user.id, _user.name, _user.username, _user.Role)
     }
 
-    public async sign(id: number, username: string, Role: string) {
+    public async sign(id: number, name: string, username: string, Role: string) {
         return this.jwt.sign({
             sub: id,
+            name,
             username,
             Role,
         })
