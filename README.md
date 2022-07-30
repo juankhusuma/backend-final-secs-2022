@@ -115,5 +115,28 @@ Nest is [MIT licensed](LICENSE).
                                   semester
 
           #Delete -> menghapus matakuliah yang diambil user
+
+  Tabel Penilaian
+  @Route: /penilaian
+          #Get  -> mengembalikan data user nilai user
+
+          #Post -> membuat penilaian pada user
+                     -> Inputan:  kehadiran,
+                                  total_sks,
+                                  tugas,
+                                  uas,
+                                  semester,
+                                  userId
+
+          #Patch -> mengupdate penilaian berdasarkan id
+                     -> Tambahan route:  /id,
+                     -> Inputan:
+                                  kehadiran,
+                                  total_sks,
+                                  tugas,
+                                  uas,
+                                  semester,
+
+          #Delete -> menghapus penilaian
                                   
 
