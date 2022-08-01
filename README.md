@@ -74,8 +74,8 @@ Nest is [MIT licensed](LICENSE).
 
 ## Dokumentasi
 
-  Tabel Mata Kuliah
-  @Route: /mata-kuliah
+  #Tabel Mata Kuliah
+  #@Route: /mata-kuliah
           #Get  -> mengembalikan daftar matakuliah
 
           #Post -> membuat matakuliah baru 
@@ -95,8 +95,8 @@ Nest is [MIT licensed](LICENSE).
 
           #Delete -> menghapus matakuliah
 
-  Tabel User Matakuliah
-  @Route: /user-matakuliah
+  #Tabel User Matakuliah
+  #@Route: /user-matakuliah
           #Get  -> mengembalikan data user login dan mata   kuliah yang terkoneksi
 
           #Post -> mengambil mata kuliah sesuai user login
@@ -115,5 +115,33 @@ Nest is [MIT licensed](LICENSE).
                                   semester
 
           #Delete -> menghapus matakuliah yang diambil user
+
+  #Tabel Penilaian
+  #@Route: /penilaian
+          #Get  -> mengembalikan data user nilai user
+
+          #Post -> membuat penilaian pada user
+                     -> Inputan:  kehadiran,
+                                  total_sks,
+                                  tugas,
+                                  uas,
+                                  semester,
+                                  userId
+
+          #Patch -> mengupdate penilaian berdasarkan id
+                     -> Tambahan route:  /id,
+                     -> Inputan:
+                                  kehadiran,
+                                  total_sks,
+                                  tugas,
+                                  uas,
+                                  semester,
+
+          #Delete -> menghapus penilaian
+
+  #Tambahan
+  #@Route: /change-password
+          #Patch  -> mengubah user password yang login
+                     -> Inputan:  password
                                   
 

@@ -1,4 +1,4 @@
-import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
 import { AppService } from './app.service';
@@ -12,4 +12,14 @@ export class AppController {
   get(@Req() req: Request) {
     return this.appService.get(req)
   }
+
+  @UseGuards(AuthGuard("jwt"))
+  @Patch("/change-password")
+  update(
+    @Req() req: Request,
+    @Body() body: string
+  ) {
+    return this.appService.changePassword(req, body)
+  }
+
 }
